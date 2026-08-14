@@ -6,7 +6,7 @@
 #    By: Visual <github.com/visual-gh>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/10 14:22:43 by Visual            #+#    #+#              #
-#    Updated: 2026/02/10 14:50:59 by Visual           ###   ########.fr        #
+#    Updated: 2026/08/14 12:54:05 by Visual           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,32 +90,30 @@ SRCS_BONUS	= src/bonus/ft_lstnew_bonus.c \
 SRCS		= $(SRCS_LIBC) $(SRCS_ADD) $(SRCS_PRINTF) $(SRCS_GNL)
 
 # Object files
-OBJS		= $(SRCS:.c=.o)
-BONUS_OBJS	= $(SRCS_BONUS:.c=.o)
+OBJS		= $(SRCS:src/%.c=obj/%.o)
+BONUS_OBJS	= $(SRCS_BONUS:src/%.c=obj/%.o)
 
 # ========== RULES ==========
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	@$(AR) $(NAME) $(OBJS)
-	@echo "✓ libft.a created successfully (43 modules)"
-
-bonus: $(OBJS) $(BONUS_OBJS)
+$(NAME): $(OBJS) $(BONUS_OBJS)
 	@$(AR) $(NAME) $(OBJS) $(BONUS_OBJS)
-	@echo "✓ libft.a created with bonus (52 modules)"
+	@echo "✅ libft"
 
-%.o: %.c
+bonus: $(NAME)
+
+obj/%.o: src/%.c
+	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-	@echo "Compiled: $<"
 
 clean:
-	@$(RM) $(OBJS) $(BONUS_OBJS)
-	@echo "✓ Object files cleaned"
+	@rm -rf obj
+	@echo "✅ clean"
 
 fclean: clean
 	@$(RM) $(NAME)
-	@echo "✓ libft.a removed"
+	@echo "✅ fclean"
 
 re: fclean all
 
