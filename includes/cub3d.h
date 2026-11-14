@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 19:43:09 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/13 14:05:44 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/14 15:35:08 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,22 @@
 #  define KEY_LEFT	123
 #  define KEY_RIGHT	124
 # endif
+
+# define WIN_W		1280
+# define WIN_H		720
+
+typedef struct s_game
+{
+	void	*mlx;
+	void	*win;
+}	t_game;
+
+int		key_press(int keycode, t_game *game);
+int		handle_close(t_game *game);
+
+void	init_game(t_game *game);
+
+void	error_exit(char *msg, t_game *game);
+void	cleanup(t_game *game);
 
 #endif
