@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 14:41:47 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/17 16:09:27 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/17 16:34:35 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	set_wall_bounds(t_ray *ray)
 	ray->draw_start = WIN_H / 2 - ray->line_h / 2;
 	if (ray->draw_start < 0)
 		ray->draw_start = 0;
-	ray->draw_end = WIN_H / 2 * ray->line_h / 2;
+	ray->draw_end = WIN_H / 2 + ray->line_h / 2;
 	if (ray->draw_end > WIN_H)
 		ray->draw_end = WIN_H;
 }
