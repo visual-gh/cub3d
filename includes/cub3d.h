@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 19:43:09 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/17 16:11:20 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/17 21:54:11 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 # define C_SOUTH	0x4060E0
 # define C_WEST		0x40C060
 # define C_EAST		0xE04040
+# define ROT_STEP	0.03
 
 typedef struct s_img
 {
@@ -95,6 +96,12 @@ typedef struct s_ray
 	int		draw_end;
 }	t_ray;
 
+typedef struct	s_keys
+{
+	int	left;
+	int	right;
+}	t_keys;
+
 typedef struct s_game
 {
 	void		*mlx;
@@ -103,10 +110,14 @@ typedef struct s_game
 	t_img		frame;
 	t_img		tex;
 	t_player	player;
+	t_keys		keys;
 }	t_game;
 
 int		key_press(int keycode, t_game *game);
+int		key_release(int keycode, t_game *game);
 int		handle_close(t_game *game);
+int		game_loop(t_game *game);
+void	rotate_player(t_player *player, double angle);
 
 void	init_game(t_game *game);
 void	load_texture(t_game *game, t_img *tex, char *path);
