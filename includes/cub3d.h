@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 19:43:09 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/14 15:35:08 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/17 01:45:44 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,37 @@
 
 # define WIN_W		1280
 # define WIN_H		720
+# define C_CEILING	0x87CEEB
+# define C_FLOOR	0x404040
+# define TEX_SIZE	256
+
+typedef struct s_img
+{
+	void	*ptr;
+	char	*addr;
+	int		bpp;
+	int		stride;
+	int		endian;
+	int		width;
+	int		height;
+}	t_img;
 
 typedef struct s_game
 {
 	void	*mlx;
 	void	*win;
+	t_img	frame;
+	t_img	tex;
 }	t_game;
 
 int		key_press(int keycode, t_game *game);
 int		handle_close(t_game *game);
 
 void	init_game(t_game *game);
+void	load_texture(t_game *game, t_img *tex, char *path);
+void	put_pixel(t_img *img, int x, int y, int color);
+int		get_texel(t_img *tex, int x, int y);
+int		render_frame(t_game *game);
 
 void	error_exit(char *msg, t_game *game);
 void	cleanup(t_game *game);

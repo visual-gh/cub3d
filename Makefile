@@ -6,7 +6,7 @@
 #    By: Visual <github.com/visual-gh>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/14 12:11:53 by Visual            #+#    #+#              #
-#    Updated: 2026/11/14 11:23:50 by Visual           ###   ########.fr        #
+#    Updated: 2026/11/17 00:07:30 by Visual           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,8 @@ INC		= -Iincludes -I$(LIBFT_DIR) -I$(MLX_DIR)
 SRCS	= src/main.c \
 		  src/game/keys.c \
 		  src/render/init_mlx.c \
+		  src/render/render.c \
+		  src/render/textures.c \
 		  src/utils/cleanup.c \
 		  src/utils/error.c
 
