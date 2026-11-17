@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 19:43:09 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/17 01:45:44 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/17 12:07:19 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "mlx.h"
+# include <math.h>
 
 # ifdef __linux__
 #  define KEY_ESC	65307
@@ -39,6 +40,7 @@
 # define C_CEILING	0x87CEEB
 # define C_FLOOR	0x404040
 # define TEX_SIZE	256
+# define FOV_PLANE	0.66
 
 typedef struct s_img
 {
@@ -51,12 +53,24 @@ typedef struct s_img
 	int		height;
 }	t_img;
 
+typedef struct s_player
+{
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+}	t_player;
+
 typedef struct s_game
 {
-	void	*mlx;
-	void	*win;
-	t_img	frame;
-	t_img	tex;
+	void		*mlx;
+	void		*win;
+	char		**map;
+	t_img		frame;
+	t_img		tex;
+	t_player	player;
 }	t_game;
 
 int		key_press(int keycode, t_game *game);
@@ -67,6 +81,8 @@ void	load_texture(t_game *game, t_img *tex, char *path);
 void	put_pixel(t_img *img, int x, int y, int color);
 int		get_texel(t_img *tex, int x, int y);
 int		render_frame(t_game *game);
+
+void	init_test_world(t_game *game);
 
 void	error_exit(char *msg, t_game *game);
 void	cleanup(t_game *game);
