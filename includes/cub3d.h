@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 19:43:09 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/18 01:03:41 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/18 01:37:03 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "mlx.h"
 # include <math.h>
+# include <sys/time.h>
 
 # ifdef __linux__
 #  define KEY_ESC	65307
@@ -46,8 +47,9 @@
 # define C_SOUTH	0x4060E0
 # define C_WEST		0x40C060
 # define C_EAST		0xE04040
-# define ROT_STEP	0.03
-# define MOVE_STEP	0.05
+# define ROT_SPEED	2
+# define MOVE_SPEED	3
+# define MAX_DT		0.1
 
 typedef struct s_img
 {
@@ -116,6 +118,7 @@ typedef struct s_game
 	t_img		tex;
 	t_player	player;
 	t_keys		keys;
+	double		last_time;
 }	t_game;
 
 int		key_press(int keycode, t_game *game);
@@ -134,6 +137,7 @@ void	draw_column(t_game *game, t_ray *ray, int x);
 
 void	init_test_world(t_game *game);
 
+double	get_time(void);
 void	error_exit(char *msg, t_game *game);
 void	cleanup(t_game *game);
 

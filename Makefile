@@ -6,7 +6,7 @@
 #    By: Visual <github.com/visual-gh>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/14 12:11:53 by Visual            #+#    #+#              #
-#    Updated: 2026/11/18 01:01:57 by Visual           ###   ########.fr        #
+#    Updated: 2026/11/18 01:21:46 by Visual           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,8 @@ SRCS	= src/main.c \
 		  src/render/raycast.c \
 		  src/render/textures.c \
 		  src/utils/cleanup.c \
-		  src/utils/error.c
+		  src/utils/error.c \
+		  src/utils/timer.c
 
 OBJS	= $(SRCS:src/%.c=obj/%.o)
 
