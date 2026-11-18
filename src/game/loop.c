@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 17:15:15 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/18 01:24:12 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/18 18:56:10 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,23 @@
 
 static void	handle_movement(t_game *game, double dt)
 {
-	double	step_x;
-	double	step_y;
+	t_player	*player;
+	double		forward;
+	double		strafe;
+	double		move_x;
+	double		move_y;
 
-	step_x = game->player.dir_x * MOVE_SPEED * dt;
-	step_y = game->player.dir_y * MOVE_SPEED * dt;
-	if (game->keys.w)
-		move_player(game, step_x, step_y);
-	if (game->keys.s)
-		move_player(game, -step_x, -step_y);
-	if (game->keys.d)
-		move_player(game, -step_y, step_x);
-	if (game->keys.a)
-		move_player(game, step_y, -step_x);
+	player = &game->player;
+	forward = (game->keys.w - game->keys.s) * MOVE_SPEED * dt;
+	strafe = (game->keys.d - game->keys.a) * MOVE_SPEED * dt;
+	if (forward != 0 && strafe != 0)
+	{
+		forward /= sqrt(2);
+		strafe /= sqrt(2);
+	}
+	move_x = player->dir_x * forward - player->dir_y * strafe;
+	move_y = player->dir_y * forward + player->dir_x * strafe;
+	move_player(game, move_x, move_y);
 }
 
 int	game_loop(t_game *game)
