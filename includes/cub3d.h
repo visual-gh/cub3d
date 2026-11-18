@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 19:43:09 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/18 01:37:03 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/18 01:47:29 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@
 # define ROT_SPEED	2
 # define MOVE_SPEED	3
 # define MAX_DT		0.1
+# define WALL_GAP	0.2
 
 typedef struct s_img
 {

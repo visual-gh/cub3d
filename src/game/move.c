@@ -6,21 +6,32 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 21:57:46 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/18 01:09:12 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/18 02:27:37 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static int	is_wall(t_game *game, double x, double y)
+{
+	return (game->map[(int)y][(int)x] == '1');
+}
+
+static int	hits_wall(t_game *game, double x, double y)
+{
+	return (is_wall(game, x - WALL_GAP, y - WALL_GAP)
+			|| is_wall(game, x + WALL_GAP, y - WALL_GAP)
+			|| is_wall(game, x - WALL_GAP, y + WALL_GAP)
+			|| is_wall(game, x + WALL_GAP, y + WALL_GAP));
+}
+
 void	move_player(t_game *game, double move_x, double move_y)
 {
-	double	new_x;
-	double	new_y;
+	t_player	*player;
 
-	new_x = game->player.pos_x + move_x;
-	new_y = game->player.pos_y + move_y;
-	if (game->map[(int)new_y][(int)new_x] == '1')
-		return ;
-	game->player.pos_x = new_x;
-	game->player.pos_y = new_y;
+	player = &game->player;
+	if (!hits_wall(game, player->pos_x + move_x, player->pos_y))
+		player->pos_x += move_x;
+	if (!hits_wall(game, player->pos_x, player->pos_y + move_y))
+		player->pos_y += move_y;
 }
