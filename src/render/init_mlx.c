@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/13 14:48:59 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/17 00:06:07 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/18 23:04:33 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	init_game(t_game *game)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		error_exit("mlx_init failed", game);
-	load_texture(game, &game->tex, "textures/test.xpm");
+	load_textures(game);
 	game->win = mlx_new_window(game->mlx, WIN_W, WIN_H, "cub3D");
 	if (!game->win)
 		error_exit("mlx_new_window failed", game);

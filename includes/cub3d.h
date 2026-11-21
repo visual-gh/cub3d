@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 19:43:09 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/18 01:47:29 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/21 14:18:45 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,11 @@
 
 # define WIN_W		1280
 # define WIN_H		720
-# define C_CEILING	0x87CEEB
-# define C_FLOOR	0x404040
-# define TEX_SIZE	256
+# define C_CEILING	0xCFCA8A
+# define C_FLOOR	0x9C9250
+# define FACE_COUNT	4
 # define FOV_PLANE	0.66
 # define MIN_DIST	0.0001
-# define C_NORTH	0xE0C040
-# define C_SOUTH	0x4060E0
-# define C_WEST		0x40C060
-# define C_EAST		0xE04040
 # define ROT_SPEED	2
 # define MOVE_SPEED	3
 # define MAX_DT		0.1
@@ -98,6 +94,7 @@ typedef struct s_ray
 	int		line_h;
 	int		draw_start;
 	int		draw_end;
+	int		tex_x;
 }	t_ray;
 
 typedef struct	s_keys
@@ -116,7 +113,8 @@ typedef struct s_game
 	void		*win;
 	char		**map;
 	t_img		frame;
-	t_img		tex;
+	t_img		tex[FACE_COUNT];
+	char		*tex_path[FACE_COUNT];
 	t_player	player;
 	t_keys		keys;
 	double		last_time;
@@ -130,7 +128,7 @@ void	rotate_player(t_player *player, double angle);
 void	move_player(t_game *game, double move_x, double move_y);
 
 void	init_game(t_game *game);
-void	load_texture(t_game *game, t_img *tex, char *path);
+void	load_textures(t_game *game);
 void	put_pixel(t_img *img, int x, int y, int color);
 int		get_texel(t_img *tex, int x, int y);
 int		render_frame(t_game *game);

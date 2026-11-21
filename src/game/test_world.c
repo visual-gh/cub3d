@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 11:48:32 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/17 13:05:36 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/18 23:24:10 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,14 @@ static void	set_test_map(t_game *game)
 		game->map = map;
 }
 
+static void	set_test_textures(t_game *game)
+{
+	game->tex_path[NO] = "textures/north.xpm";
+	game->tex_path[SO] = "textures/south.xpm";
+	game->tex_path[WE] = "textures/west.xpm";
+	game->tex_path[EA] = "textures/east.xpm";
+}
+
 static void	set_test_player(t_player *player)
 {
 	player->pos_x = 5.5;
@@ -41,4 +49,5 @@ void	init_test_world(t_game *game)
 {
 	set_test_map(game);
 	set_test_player(&game->player);
+	set_test_textures(game);
 }

@@ -6,17 +6,29 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/13 14:25:03 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/16 16:29:26 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/21 11:16:12 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static void	destroy_textures(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < FACE_COUNT)
+	{
+		if (game->tex[i].ptr)
+			mlx_destroy_image(game->mlx, game->tex[i].ptr);
+		game->tex[i].ptr = NULL;
+		i++;
+	}
+}
+
 void	cleanup(t_game *game)
 {
-	if (game->tex.ptr)
-		mlx_destroy_image(game->mlx, game->tex.ptr);
-	game->tex.ptr = NULL;
+	destroy_textures(game);
 	if (game->frame.ptr)
 		mlx_destroy_image(game->mlx, game->frame.ptr);
 	game->frame.ptr = NULL;

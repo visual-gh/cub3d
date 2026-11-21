@@ -6,13 +6,13 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/16 16:14:17 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/17 01:50:44 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/21 15:24:35 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	load_texture(t_game *game, t_img *tex, char *path)
+static void	load_texture(t_game *game, t_img *tex, char *path)
 {
 	tex->ptr = mlx_xpm_file_to_image(game->mlx, path,
 					&tex->width, &tex->height);
@@ -20,6 +20,18 @@ void	load_texture(t_game *game, t_img *tex, char *path)
 		error_exit("cannot load texture", game);
 	tex->addr = mlx_get_data_addr(tex->ptr, &tex->bpp,
 					&tex->stride, &tex->endian);
+}
+
+void	load_textures(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < FACE_COUNT)
+	{
+		load_texture(game, &game->tex[i], game->tex_path[i]);
+		i++;
+	}
 }
 
 void	put_pixel(t_img *img, int x, int y, int color)
