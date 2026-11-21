@@ -6,7 +6,7 @@
 #    By: Visual <github.com/visual-gh>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/14 12:11:53 by Visual            #+#    #+#              #
-#    Updated: 2026/11/18 01:21:46 by Visual           ###   ########.fr        #
+#    Updated: 2026/11/21 15:44:25 by Visual           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRCS	= src/main.c \
 		  src/render/init_mlx.c \
 		  src/render/draw_column.c \
 		  src/render/raycast.c \
+		  src/render/shade.c \
 		  src/render/textures.c \
 		  src/utils/cleanup.c \
 		  src/utils/error.c \

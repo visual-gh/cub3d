@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 19:43:09 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/21 14:18:45 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/21 17:42:42 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@
 # define MOVE_SPEED	3
 # define MAX_DT		0.1
 # define WALL_GAP	0.2
+# define SIDE_SHADE	0.08
 
 typedef struct s_img
 {
@@ -95,6 +96,7 @@ typedef struct s_ray
 	int		draw_start;
 	int		draw_end;
 	int		tex_x;
+	double	light;
 }	t_ray;
 
 typedef struct	s_keys
@@ -133,6 +135,7 @@ void	put_pixel(t_img *img, int x, int y, int color);
 int		get_texel(t_img *tex, int x, int y);
 int		render_frame(t_game *game);
 void	draw_column(t_game *game, t_ray *ray, int x);
+int		shade(int color, double factor);
 
 void	init_test_world(t_game *game);
 

@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 14:41:47 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/21 12:07:08 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/21 17:57:38 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ static void	draw_wall(t_game *game, t_ray *ray, int x, t_face face)
 
 	tex = &game->tex[face];
 	set_tex_x(game, ray, tex, face);
+	ray->light = 1.0;
+	if (ray->side == 0)
+		ray->light = 1.0 - SIDE_SHADE;
 	step = (double)tex->height / ray->line_h;
 	tex_pos = (ray->draw_start - WIN_H / 2 + ray->line_h / 2) * step;
 	y = ray->draw_start;
@@ -66,7 +69,8 @@ static void	draw_wall(t_game *game, t_ray *ray, int x, t_face face)
 		tex_y = (int)tex_pos;
 		if (tex_y >= tex->height)
 			tex_y = tex->height - 1;
-		put_pixel(&game->frame, x, y, get_texel(tex, ray->tex_x, tex_y));
+		put_pixel(&game->frame, x, y,
+				shade(get_texel(tex, ray->tex_x, tex_y), ray->light));
 		tex_pos += step;
 		y++;
 	}
