@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 19:43:09 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/21 17:42:42 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/21 19:03:33 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@
 
 # define WIN_W		1280
 # define WIN_H		720
-# define C_CEILING	0xCFCA8A
-# define C_FLOOR	0x9C9250
+# define C_CEILING	0xA1964C
+# define C_FLOOR	0xB9B46D
 # define FACE_COUNT	4
 # define FOV_PLANE	0.66
 # define MIN_DIST	0.0001
@@ -48,6 +48,9 @@
 # define MAX_DT		0.1
 # define WALL_GAP	0.2
 # define SIDE_SHADE	0.08
+# define C_FOG		0x745300
+# define FOG_DIST	8
+# define FOG_MAX	1.0
 
 typedef struct s_img
 {
@@ -97,6 +100,7 @@ typedef struct s_ray
 	int		draw_end;
 	int		tex_x;
 	double	light;
+	double	fog;
 }	t_ray;
 
 typedef struct	s_keys
@@ -120,6 +124,7 @@ typedef struct s_game
 	t_player	player;
 	t_keys		keys;
 	double		last_time;
+	int			row_color[WIN_H];
 }	t_game;
 
 int		key_press(int keycode, t_game *game);
@@ -136,6 +141,10 @@ int		get_texel(t_img *tex, int x, int y);
 int		render_frame(t_game *game);
 void	draw_column(t_game *game, t_ray *ray, int x);
 int		shade(int color, double factor);
+int		fog(int color, double t);
+double	fog_amount(double dist);
+int		wall_color(t_img *tex, t_ray *ray, int tex_y);
+void	init_row_colors(t_game *game);
 
 void	init_test_world(t_game *game);
 
