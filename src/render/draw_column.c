@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 14:41:47 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/21 19:16:18 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/23 11:38:23 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,7 @@ void	draw_column(t_game *game, t_ray *ray, int x)
 	int	y;
 
 	set_wall_bounds(ray);
-	y = 0;
-	while (y < ray->draw_start)
-	{
-		put_pixel(&game->frame, x, y, game->row_color[y]);
-		y++;
-	}
+	draw_ceiling(game, ray, x);
 	draw_wall(game, ray, x, get_wall_face(ray));
 	y = ray->draw_end;
 	while (y < WIN_H)

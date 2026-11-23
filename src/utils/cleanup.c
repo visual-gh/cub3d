@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/13 14:25:03 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/21 11:16:12 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/23 00:48:36 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	destroy_textures(t_game *game)
 	int	i;
 
 	i = 0;
-	while (i < FACE_COUNT)
+	while (i < TEX_COUNT)
 	{
 		if (game->tex[i].ptr)
 			mlx_destroy_image(game->mlx, game->tex[i].ptr);

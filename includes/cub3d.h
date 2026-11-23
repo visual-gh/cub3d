@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 19:43:09 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/21 19:03:33 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/23 12:10:36 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@
 # define C_CEILING	0xA1964C
 # define C_FLOOR	0xB9B46D
 # define FACE_COUNT	4
+# define TEX_COUNT	6
+# define CEIL_XPM	"textures/ceiling.xpm"
+# define LIGHT_XPM	"textures/light.xpm"
+# define PANELS_PER_CELL	2
 # define FOV_PLANE	0.66
 # define MIN_DIST	0.0001
 # define ROT_SPEED	2
@@ -78,7 +82,9 @@ typedef enum e_face
 	NO,
 	SO,
 	WE,
-	EA
+	EA,
+	CEIL,
+	LIGHT
 }	t_face;
 
 typedef struct s_ray
@@ -119,12 +125,14 @@ typedef struct s_game
 	void		*win;
 	char		**map;
 	t_img		frame;
-	t_img		tex[FACE_COUNT];
+	t_img		tex[TEX_COUNT];
 	char		*tex_path[FACE_COUNT];
 	t_player	player;
 	t_keys		keys;
 	double		last_time;
 	int			row_color[WIN_H];
+	double		row_dist[WIN_H / 2];
+	double		row_fog[WIN_H / 2];
 }	t_game;
 
 int		key_press(int keycode, t_game *game);
@@ -140,6 +148,7 @@ void	put_pixel(t_img *img, int x, int y, int color);
 int		get_texel(t_img *tex, int x, int y);
 int		render_frame(t_game *game);
 void	draw_column(t_game *game, t_ray *ray, int x);
+void	draw_ceiling(t_game *game, t_ray *ray, int x);
 int		shade(int color, double factor);
 int		fog(int color, double t);
 double	fog_amount(double dist);
