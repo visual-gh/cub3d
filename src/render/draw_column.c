@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 14:41:47 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/23 11:38:23 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/23 17:54:00 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ static void	set_tex_x(t_game *game, t_ray *ray, t_img *tex, t_face face)
 static void	draw_wall(t_game *game, t_ray *ray, int x, t_face face)
 {
 	t_img	*tex;
-	double	step;
-	double	tex_pos;
 	int		tex_y;
+	int		last_y;
+	int		color;
 	int		y;
 
 	tex = &game->tex[face];
@@ -62,16 +62,16 @@ static void	draw_wall(t_game *game, t_ray *ray, int x, t_face face)
 	if (ray->side == 0)
 		ray->light = 1.0 - SIDE_SHADE;
 	ray->fog = fog_amount(ray->perp_dist);
-	step = (double)tex->height / ray->line_h;
-	tex_pos = (ray->draw_start - WIN_H / 2 + ray->line_h / 2) * step;
+	last_y = -1;
+	color = 0;
 	y = ray->draw_start;
 	while (y < ray->draw_end)
 	{
-		tex_y = (int)tex_pos;
-		if (tex_y >= tex->height)
-			tex_y = tex->height - 1;
-		put_pixel(&game->frame, x, y, wall_color(tex, ray, tex_y));
-		tex_pos += step;
+		tex_y = (y - WIN_H / 2 + ray->line_h / 2) * tex->height / ray->line_h;
+		if (tex_y != last_y)
+			color = wall_color(tex, ray, tex_y);
+		last_y = tex_y;
+		put_pixel(&game->frame, x, y, color);
 		y++;
 	}
 }
