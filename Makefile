@@ -6,14 +6,14 @@
 #    By: Visual <github.com/visual-gh>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/14 12:11:53 by Visual            #+#    #+#              #
-#    Updated: 2026/11/23 11:56:42 by Visual           ###   ########.fr        #
+#    Updated: 2026/11/23 15:37:54 by Visual           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= cub3D
 
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -O2
 RM		= rm -rf
 
 UNAME	:= $(shell uname)
