@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 19:43:09 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/23 12:10:36 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/23 13:04:27 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@
 # define WIN_H		720
 # define C_CEILING	0xA1964C
 # define C_FLOOR	0xB9B46D
+# define C_LIGHT	0xFFF8E7
 # define FACE_COUNT	4
-# define TEX_COUNT	6
+# define TEX_COUNT	5
 # define CEIL_XPM	"textures/ceiling.xpm"
-# define LIGHT_XPM	"textures/light.xpm"
 # define PANELS_PER_CELL	2
+# define LIGHT_EVERY		2
 # define FOV_PLANE	0.66
 # define MIN_DIST	0.0001
 # define ROT_SPEED	2
@@ -83,8 +84,7 @@ typedef enum e_face
 	SO,
 	WE,
 	EA,
-	CEIL,
-	LIGHT
+	CEIL
 }	t_face;
 
 typedef struct s_ray
