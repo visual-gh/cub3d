@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 19:43:09 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/23 13:04:27 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/23 16:42:22 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,8 @@ typedef struct s_game
 	t_player	player;
 	t_keys		keys;
 	double		last_time;
+	int			floor_color;
+	int			ceil_color;
 	int			row_color[WIN_H];
 	double		row_dist[WIN_H / 2];
 	double		row_fog[WIN_H / 2];

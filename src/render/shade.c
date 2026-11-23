@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/21 15:40:31 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/23 11:32:16 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/23 16:40:35 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int	wall_color(t_img *tex, t_ray *ray, int tex_y)
 void	init_row_colors(t_game *game)
 {
 	double	dist;
+	double	t;
 	int		y;
 
 	y = 0;
@@ -69,9 +70,10 @@ void	init_row_colors(t_game *game)
 	{
 		dist = WIN_W / (4 * FOV_PLANE * (WIN_H / 2 - y));
 		game->row_dist[y] = dist;
-		game->row_fog[y] = fog_amount(dist);
-		game->row_color[y] = fog(C_CEILING, game->row_fog[y]);
-		game->row_color[WIN_H - 1 - y] = fog(C_FLOOR, game->row_fog[y]);
+		t = fog_amount(dist);
+		game->row_fog[y] = t;
+		game->row_color[y] = fog(game->ceil_color, t);
+		game->row_color[WIN_H - 1 - y] = fog(game->floor_color, t);
 		y++;
 	}
 }

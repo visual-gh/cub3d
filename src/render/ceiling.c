@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/22 23:32:24 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/23 13:13:31 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/23 16:35:11 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	ceiling_color(t_game *game, double wx, double wy, int y)
 	if ((int)wx % step == 0 && (int)wy % step == 0 && color == 0xFFFFFF)
 		color = C_LIGHT;
 	else
-		color = tint(color, C_CEILING);
+		color = tint(color, game->ceil_color);
 	return (fog(color, game->row_fog[y]));
 }
 

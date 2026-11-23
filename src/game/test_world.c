@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 11:48:32 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/18 23:24:10 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/23 16:34:32 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,6 @@ void	init_test_world(t_game *game)
 	set_test_map(game);
 	set_test_player(&game->player);
 	set_test_textures(game);
+	game->floor_color = C_FLOOR;
+	game->ceil_color = C_CEILING;
 }
