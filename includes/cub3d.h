@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
+/*   By: flvejux <flvejux@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 19:43:09 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/23 13:04:27 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/24 07:57:05 by flvejux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "mlx.h"
 # include <math.h>
 # include <sys/time.h>
+# include <fcntl.h>
 
 # ifdef __linux__
 #  define KEY_ESC	65307
@@ -56,6 +57,10 @@
 # define C_FOG		0x745300
 # define FOG_DIST	8
 # define FOG_MAX	1.0
+
+# define ID_F		4
+# define ID_C		5
+# define ID_COUNT	6
 
 typedef struct s_img
 {
@@ -133,6 +138,11 @@ typedef struct s_game
 	int			row_color[WIN_H];
 	double		row_dist[WIN_H / 2];
 	double		row_fog[WIN_H / 2];
+	char		**file;
+	int			map_w;
+	int			map_h;
+	int			floor_color;
+	int			ceil_color;
 }	t_game;
 
 int		key_press(int keycode, t_game *game);
@@ -156,6 +166,18 @@ int		wall_color(t_img *tex, t_ray *ray, int tex_y);
 void	init_row_colors(t_game *game);
 
 void	init_test_world(t_game *game);
+
+void	check_args(int argc, char **argv);
+void	parse_file(t_game *game, char *path);
+void	read_file(t_game *game, char *path);
+int		parse_header(t_game *game);
+void	parse_color(t_game *game, char *s, int *dst);
+void	extract_map(t_game *game, int start);
+void	check_map(t_game *game);
+void	set_player(t_game *game);
+void	free_tab(char **tab);
+int		is_blank(char *s);
+char	*skip_spaces(char *s);
 
 double	get_time(void);
 void	error_exit(char *msg, t_game *game);
