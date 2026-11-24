@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 19:43:09 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/23 16:42:22 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/24 14:54:10 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 # define C_CEILING	0xA1964C
 # define C_FLOOR	0xB9B46D
 # define C_LIGHT	0xFFF8E7
+# define LIGHT_THRU	0.05
 # define FACE_COUNT	4
 # define TEX_COUNT	5
 # define CEIL_XPM	"textures/ceiling.xpm"
