@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/22 23:32:24 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/24 14:45:56 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/24 15:33:21 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	tint(int texel, int color)
 static int	panel_texel(t_img *tex, double wx, double wy)
 {
 	return (get_texel(tex, (int)((wx - (int)wx) * tex->width),
-				(int)((wy - (int)wy) * tex->height)));
+		(int)((wy - (int)wy) * tex->height)));
 }
 
 static int	ceiling_color(t_game *game, double wx, double wy, int y)

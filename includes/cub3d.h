@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 19:43:09 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/24 14:54:10 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/24 15:29:38 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ typedef struct s_ray
 	double	fog;
 }	t_ray;
 
-typedef struct	s_keys
+typedef struct s_keys
 {
 	int	w;
 	int	a;
