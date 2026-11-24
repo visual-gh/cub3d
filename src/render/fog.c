@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shade.c                                            :+:      :+:    :+:   */
+/*   fog.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/21 15:40:31 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/23 16:40:35 by Visual           ###   ########.fr       */
+/*   Created: 2026/11/24 15:40:48 by Visual            #+#    #+#             */
+/*   Updated: 2026/11/24 17:00:07 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	shade(int color, double factor)
+double	fog_amount(double dist)
 {
-	int	r;
-	int	g;
-	int	b;
+	double	t;
 
-	r = (int)(((color >> 16) & 0xFF) * factor);
-	g = (int)(((color >> 8) & 0xFF) * factor);
-	b = (int)((color & 0xFF) * factor);
-	return ((r << 16) | (g << 8) | b);
+	t = dist / FOG_DIST;
+	if (t > 1.0)
+		t = 1.0;
+	t = t * t * (3.0 - 2.0 * t);
+	return (t * FOG_MAX);
 }
 
 int	fog(int color, double t)
@@ -39,30 +38,9 @@ int	fog(int color, double t)
 	return ((r << 16) | (g << 8) | b);
 }
 
-double	fog_amount(double dist)
-{
-	double	t;
-
-	t = dist / FOG_DIST;
-	if (t > 1.0)
-		t = 1.0;
-	t = t * t * (3.0 - 2.0 * t);
-	return (t * FOG_MAX);
-}
-
-int	wall_color(t_img *tex, t_ray *ray, int tex_y)
-{
-	int	color;
-
-	color = get_texel(tex, ray->tex_x, tex_y);
-	color = shade(color, ray->light);
-	return (fog(color, ray->fog));
-}
-
-void	init_row_colors(t_game *game)
+void	init_row_tables(t_game *game)
 {
 	double	dist;
-	double	t;
 	int		y;
 
 	y = 0;
@@ -70,10 +48,8 @@ void	init_row_colors(t_game *game)
 	{
 		dist = WIN_W / (4 * FOV_PLANE * (WIN_H / 2 - y));
 		game->row_dist[y] = dist;
-		t = fog_amount(dist);
-		game->row_fog[y] = t;
-		game->row_color[y] = fog(game->ceil_color, t);
-		game->row_color[WIN_H - 1 - y] = fog(game->floor_color, t);
+		game->row_fog[y] = fog_amount(dist);
+		game->row_floor[y] = fog(game->floor_color, game->row_fog[y]);
 		y++;
 	}
 }

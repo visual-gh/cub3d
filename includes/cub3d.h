@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 19:43:09 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/24 15:29:38 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/24 17:46:06 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,9 +133,9 @@ typedef struct s_game
 	double		last_time;
 	int			floor_color;
 	int			ceil_color;
-	int			row_color[WIN_H];
 	double		row_dist[WIN_H / 2];
 	double		row_fog[WIN_H / 2];
+	int			row_floor[WIN_H / 2];
 }	t_game;
 
 int		key_press(int keycode, t_game *game);
@@ -155,8 +155,9 @@ void	draw_ceiling(t_game *game, t_ray *ray, int x);
 int		shade(int color, double factor);
 int		fog(int color, double t);
 double	fog_amount(double dist);
-int		wall_color(t_img *tex, t_ray *ray, int tex_y);
-void	init_row_colors(t_game *game);
+int		tint(int color, int filter);
+void	init_row_tables(t_game *game);
+void	draw_wall(t_game *game, t_ray *ray, int x);
 
 void	init_test_world(t_game *game);
 

@@ -6,23 +6,11 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/22 23:32:24 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/24 15:33:21 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/24 17:20:50 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static int	tint(int texel, int color)
-{
-	int	r;
-	int	g;
-	int	b;
-
-	r = ((texel >> 16) & 0xFF) * ((color >> 16) & 0xFF) / 255;
-	g = ((texel >> 8) & 0xFF) * ((color >> 8) & 0xFF) / 255;
-	b = (texel & 0xFF) * (color & 0xFF) / 255;
-	return ((r << 16) | (g << 8) | b);
-}
 
 static int	panel_texel(t_img *tex, double wx, double wy)
 {
