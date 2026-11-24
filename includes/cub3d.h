@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 19:43:09 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/24 19:38:03 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/24 20:54:25 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@
 # define WALL_GAP		0.2
 
 # define FACE_COUNT		4
-# define TEX_COUNT		5
-# define CEIL_XPM		"textures/ceiling.xpm"
 # define CELL_PANELS	2
 # define LIGHT_EVERY	2
+# define PANEL_EDGE		0.03125
 
 # define C_FLOOR		0xB9B46D
 # define C_CEILING		0xA1964C
 # define C_LIGHT		0xFFF8E7
+# define C_PANEL_EDGE	0xE8E8E8
 # define C_FOG			0x745300
 # define SIDE_SHADE		0.08
 # define FOG_DIST		8
@@ -70,8 +70,7 @@ typedef enum e_face
 	NO,
 	SO,
 	WE,
-	EA,
-	CEIL
+	EA
 }	t_face;
 
 typedef struct s_img
@@ -132,7 +131,7 @@ typedef struct s_game
 	void		*mlx;
 	void		*win;
 	t_img		frame;
-	t_img		tex[TEX_COUNT];
+	t_img		tex[FACE_COUNT];
 	char		*tex_path[FACE_COUNT];
 	char		**map;
 	t_player	player;

@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/16 16:14:17 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/24 19:05:25 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/24 20:57:20 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	load_textures(t_game *game)
 		load_texture(game, &game->tex[i], game->tex_path[i]);
 		i++;
 	}
-	load_texture(game, &game->tex[CEIL], CEIL_XPM);
 }
 
 void	put_pixel(t_img *img, int x, int y, int color)
