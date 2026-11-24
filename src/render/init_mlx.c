@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/13 14:48:59 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/24 15:31:41 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/24 19:04:22 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	init_frame(t_game *game)
 	frame = &game->frame;
 	frame->ptr = mlx_new_image(game->mlx, WIN_W, WIN_H);
 	if (!frame->ptr)
-		error_exit("mlx_new_image failed", game);
+		error_exit(game, "mlx_new_image failed");
 	frame->addr = mlx_get_data_addr(frame->ptr, &frame->bpp,
 			&frame->stride, &frame->endian);
 	frame->width = WIN_W;
@@ -30,10 +30,10 @@ void	init_game(t_game *game)
 {
 	game->mlx = mlx_init();
 	if (!game->mlx)
-		error_exit("mlx_init failed", game);
+		error_exit(game, "mlx_init failed");
 	load_textures(game);
 	game->win = mlx_new_window(game->mlx, WIN_W, WIN_H, "cub3D");
 	if (!game->win)
-		error_exit("mlx_new_window failed", game);
+		error_exit(game, "mlx_new_window failed");
 	init_frame(game);
 }

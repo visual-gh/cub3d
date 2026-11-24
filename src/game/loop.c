@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 17:15:15 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/18 18:56:10 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/24 18:06:37 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,8 @@ int	game_loop(t_game *game)
 		dt = MAX_DT;
 	if (dt < 0)
 		dt = 0;
-	if (game->keys.left)
-		rotate_player(&game->player, -ROT_SPEED * dt);
-	if (game->keys.right)
-		rotate_player(&game->player, ROT_SPEED * dt);
+	rotate_player(&game->player,
+		(game->keys.right - game->keys.left) * ROT_SPEED * dt);
 	handle_movement(game, dt);
 	render_frame(game);
 	return (0);

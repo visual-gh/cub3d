@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 19:43:09 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/24 17:46:06 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/24 17:58:55 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@
 #  define KEY_LEFT	123
 #  define KEY_RIGHT	124
 # endif
+
+# define ON_KEYDOWN	2
+# define ON_KEYUP	3
+# define ON_DESTROY	17
 
 # define WIN_W		1280
 # define WIN_H		720
@@ -162,7 +166,7 @@ void	draw_wall(t_game *game, t_ray *ray, int x);
 void	init_test_world(t_game *game);
 
 double	get_time(void);
-void	error_exit(char *msg, t_game *game);
+void	error_exit(t_game *game, char *msg);
 void	cleanup(t_game *game);
 
 #endif
