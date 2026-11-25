@@ -51,7 +51,7 @@ static void	strip_newline(char *line)
 	size_t	len;
 
 	len = ft_strlen(line);
-	if (len > 0 && line[len - 1 == '\n'])
+	if (len > 0 && line[len - 1] == '\n')
 	{
 		len--;
 		line[len] = '\0';
@@ -68,7 +68,7 @@ void	read_file(t_game *game, char *path)
 
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		error_exit("cannot open map file", game);
+		error_exit(game, "cannot open map file");
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -78,12 +78,12 @@ void	read_file(t_game *game, char *path)
 		{
 			free(line);
 			close(fd);
-			error_exit("malloc failed", game);
+			error_exit(game, "malloc failed");
 		}
 		game->file = new;
 		line = get_next_line(fd);
 	}
 	close(fd);
 	if (!game->file)
-		error_exit("map file is empty or unreadable", game);
+		error_exit(game, "map file is empty or unreadable");
 }

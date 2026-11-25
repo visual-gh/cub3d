@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: Visual <github.com/visual-gh>              +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/02/10 14:22:43 by Visual            #+#    #+#              #
-#    Updated: 2026/08/14 12:54:05 by Visual           ###   ########.fr        #
+#                                                          :::      ::::::::   #
+#   Makefile                                             :+:      :+:    :+:   #
+#                                                      +:+ +:+         +:+     #
+#   By: flvejux <flvejux@student.42lausanne.ch>      +#+  +:+       +#+        #
+#                                                  +#+#+#+#+#+   +#+           #
+#   Created: 2026/02/10 14:22:43 by Visual              #+#    #+#             #
+#   Updated: 2026/11/25 13:23:18 by flvejux            ###   ########.fr       #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,7 +99,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS) $(BONUS_OBJS)
 	@$(AR) $(NAME) $(OBJS) $(BONUS_OBJS)
-	@echo "✅ libft"
+	@echo "libft built"
 
 bonus: $(NAME)
 
@@ -109,11 +109,11 @@ obj/%.o: src/%.c
 
 clean:
 	@rm -rf obj
-	@echo "✅ clean"
+	@echo "clean"
 
 fclean: clean
 	@$(RM) $(NAME)
-	@echo "✅ fclean"
+	@echo "fclean"
 
 re: fclean all
 

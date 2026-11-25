@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
+/*   By: flvejux <flvejux@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/13 14:25:03 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/24 21:03:02 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/25 13:42:36 by flvejux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,26 @@ static void	destroy_textures(t_game *game)
 	}
 }
 
+static void	free_parsing(t_game *game)
+{
+	int	i;
+
+	free_tab(game->file);
+	game->file = NULL;
+	free_tab(game->map);
+	game->map = NULL;
+	i = 0;
+	while (i < FACE_COUNT)
+	{
+		free(game->tex_path[i]);
+		game->tex_path[i] = NULL;
+		i++;
+	}
+}
+
 void	cleanup(t_game *game)
 {
+	free_parsing(game);
 	destroy_textures(game);
 	if (game->frame.ptr)
 		mlx_destroy_image(game->mlx, game->frame.ptr);

@@ -6,7 +6,7 @@
 /*   By: flvejux <flvejux@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 19:43:09 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/25 07:12:30 by flvejux          ###   ########.fr       */
+/*   Updated: 2026/11/25 13:46:34 by flvejux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@
 # define LIGHT_EVERY	2
 # define PANEL_EDGE		0.03125
 
-# define C_FLOOR		0xB9B46D
-# define C_CEILING		0xA1964C
 # define C_LIGHT		0xFFF8E7
 # define C_PANEL_EDGE	0xE8E8E8
 # define C_FOG			0x745300
@@ -65,6 +63,10 @@
 # define FOG_DIST		8
 # define FOG_MAX		1.0
 # define LIGHT_THRU		0.05
+
+# define ID_F		4
+# define ID_C		5
+# define ID_COUNT	6
 
 typedef enum e_face
 {
@@ -143,6 +145,9 @@ typedef struct s_game
 	double		row_dist[WIN_H / 2];
 	double		row_fog[WIN_H / 2];
 	int			row_floor[WIN_H / 2];
+	char		**file;
+	int			map_w;
+	int			map_h;
 }	t_game;
 
 // game
@@ -152,7 +157,7 @@ int		handle_close(t_game *game);
 int		game_loop(t_game *game);
 void	move_player(t_game *game, double move_x, double move_y);
 void	rotate_player(t_player *player, double angle);
-void	init_test_world(t_game *game);
+//void	init_test_world(t_game *game);
 
 // render
 void	draw_ceiling(t_game *game, t_ray *ray, int x);
@@ -173,5 +178,18 @@ void	draw_wall(t_game *game, t_ray *ray, int x);
 void	cleanup(t_game *game);
 void	error_exit(t_game *game, char *msg);
 double	get_time(void);
+
+// parsing
+void	check_args(int argc, char **argv);
+void	parse_file(t_game *game, char *path);
+void	read_file(t_game *game, char *path);
+int		parse_header(t_game *game);
+void	parse_color(t_game *game, char *s, int *dst);
+void	extract_map(t_game *game, int start);
+void	check_map(t_game *game);
+void	set_player(t_game *game);
+void	free_tab(char **tab);
+int		is_blank(char *s);
+char	*skip_spaces(char *s);
 
 #endif

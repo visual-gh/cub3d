@@ -1,0 +1,11 @@
+NO textures/north.xpm
+SO textures/south.xpm
+WE textures/west.xpm
+EA textures/east.xpm
+F 1 2,3,4
+C 1,1,1
+111111
+100101
+101001
+1100N1
+111111

@@ -21,7 +21,7 @@ static int	has_cub_ext(char *path)
 		return (0);
 	if (ft_strncmp(path + len - 4, ".cub", 5) != 0)
 		return (0);
-	if (path[len + 5] == '/')
+	if (path[len - 5] == '/')
 		return (0);
 	return (1);
 }
@@ -29,9 +29,9 @@ static int	has_cub_ext(char *path)
 void	check_args(int argc, char **argv)
 {
 	if (argc != 2)
-		error_exit("usage: ./cub3D <map.cub>", NULL);
+		error_exit(NULL, "usage: ./cub3D <map.cub>");
 	if (!has_cub_ext(argv[1]))
-		error_exit("map file must have a .cub extension", NULL);
+		error_exit(NULL, "map file must have a .cub extension");
 }
 
 void	parse_file(t_game *game, char *path)
