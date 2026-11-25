@@ -6,14 +6,14 @@
 #    By: Visual <github.com/visual-gh>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/14 12:11:53 by Visual            #+#    #+#              #
-#    Updated: 2026/11/23 11:56:42 by Visual           ###   ########.fr        #
+#    Updated: 2026/11/24 17:22:05 by Visual           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= cub3D
 
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -O2
 RM		= rm -rf
 
 UNAME	:= $(shell uname)
@@ -38,12 +38,14 @@ SRCS	= src/main.c \
 		  src/game/move.c \
 		  src/game/rotate.c \
 		  src/game/test_world.c \
-		  src/render/init_mlx.c \
 		  src/render/ceiling.c \
+		  src/render/color.c \
 		  src/render/draw_column.c \
+		  src/render/fog.c \
+		  src/render/init_mlx.c \
 		  src/render/raycast.c \
-		  src/render/shade.c \
 		  src/render/textures.c \
+		  src/render/wall.c \
 		  src/utils/cleanup.c \
 		  src/utils/error.c \
 		  src/utils/timer.c

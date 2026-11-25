@@ -6,22 +6,11 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 14:41:47 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/23 11:38:23 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/24 17:12:18 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static t_face	get_wall_face(t_ray *ray)
-{
-	if (ray->side == 0 && ray->dir_x > 0)
-		return (EA);
-	if (ray->side == 0)
-		return (WE);
-	if (ray->dir_y > 0)
-		return (SO);
-	return (NO);
-}
 
 static void	set_wall_bounds(t_ray *ray)
 {
@@ -34,59 +23,22 @@ static void	set_wall_bounds(t_ray *ray)
 		ray->draw_end = WIN_H;
 }
 
-static void	set_tex_x(t_game *game, t_ray *ray, t_img *tex, t_face face)
+static void	draw_floor(t_game *game, t_ray *ray, int x)
 {
-	double	wall_x;
+	int	y;
 
-	if (ray->side == 0)
-		wall_x = game->player.pos_y + ray->perp_dist * ray->dir_y;
-	else
-		wall_x = game->player.pos_x + ray->perp_dist * ray->dir_x;
-	wall_x -= floor(wall_x);
-	ray->tex_x = (int)(wall_x * tex->width);
-	if (face == SO || face == WE)
-		ray->tex_x = tex->width - ray->tex_x - 1;
-}
-
-static void	draw_wall(t_game *game, t_ray *ray, int x, t_face face)
-{
-	t_img	*tex;
-	double	step;
-	double	tex_pos;
-	int		tex_y;
-	int		y;
-
-	tex = &game->tex[face];
-	set_tex_x(game, ray, tex, face);
-	ray->light = 1.0;
-	if (ray->side == 0)
-		ray->light = 1.0 - SIDE_SHADE;
-	ray->fog = fog_amount(ray->perp_dist);
-	step = (double)tex->height / ray->line_h;
-	tex_pos = (ray->draw_start - WIN_H / 2 + ray->line_h / 2) * step;
-	y = ray->draw_start;
-	while (y < ray->draw_end)
+	y = ray->draw_end;
+	while (y < WIN_H)
 	{
-		tex_y = (int)tex_pos;
-		if (tex_y >= tex->height)
-			tex_y = tex->height - 1;
-		put_pixel(&game->frame, x, y, wall_color(tex, ray, tex_y));
-		tex_pos += step;
+		put_pixel(&game->frame, x, y, game->row_floor[WIN_H - 1 - y]);
 		y++;
 	}
 }
 
 void	draw_column(t_game *game, t_ray *ray, int x)
 {
-	int	y;
-
 	set_wall_bounds(ray);
 	draw_ceiling(game, ray, x);
-	draw_wall(game, ray, x, get_wall_face(ray));
-	y = ray->draw_end;
-	while (y < WIN_H)
-	{
-		put_pixel(&game->frame, x, y, game->row_color[y]);
-		y++;
-	}
+	draw_wall(game, ray, x);
+	draw_floor(game, ray, x);
 }
