@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flvejux <flvejux@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 19:43:09 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/25 13:46:34 by flvejux          ###   ########.fr       */
+/*   Updated: 2026/11/27 16:31:39 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 
 # include "libft.h"
 # include "mlx.h"
-# include <math.h>
-# include <sys/time.h>
 # include <fcntl.h>
+# include <math.h>
+# include <stdlib.h>
+# include <sys/time.h>
+# include <unistd.h>
 
 # ifdef __linux__
 #  define KEY_ESC		65307

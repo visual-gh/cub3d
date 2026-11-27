@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_header.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flvejux <flvejux@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/24 14:07:44 by flvejux           #+#    #+#             */
-/*   Updated: 2026/11/24 14:27:02 by flvejux          ###   ########.fr       */
+/*   Updated: 2026/11/27 16:26:06 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <fcntl.h>
-#include <stddef.h>
 
 static int	get_id(char *s)
 {
