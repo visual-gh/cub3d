@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 19:43:09 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/27 16:47:15 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/27 17:11:02 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,10 @@ typedef struct s_game
 	t_img		frame;
 	t_img		tex[FACE_COUNT];
 	char		*tex_path[FACE_COUNT];
+	char		**file;
 	char		**map;
+	int			map_w;
+	int			map_h;
 	t_player	player;
 	int			floor_color;
 	int			ceil_color;
@@ -146,9 +149,6 @@ typedef struct s_game
 	double		row_dist[WIN_H / 2];
 	double		row_fog[WIN_H / 2];
 	int			row_floor[WIN_H / 2];
-	char		**file;
-	int			map_w;
-	int			map_h;
 }	t_game;
 
 // game
@@ -158,7 +158,19 @@ int		handle_close(t_game *game);
 int		game_loop(t_game *game);
 void	move_player(t_game *game, double move_x, double move_y);
 void	rotate_player(t_player *player, double angle);
-//void	init_test_world(t_game *game);
+
+// parsing
+void	check_map(t_game *game);
+void	extract_map(t_game *game, int start);
+void	parse_color(t_game *game, char *s, int *dst);
+void	check_args(int argc, char **argv);
+void	parse_file(t_game *game, char *path);
+int		parse_header(t_game *game);
+void	free_tab(char **tab);
+int		is_blank(char *s);
+char	*skip_spaces(char *s);
+void	read_file(t_game *game, char *path);
+void	set_player(t_game *game);
 
 // render
 void	draw_ceiling(t_game *game, t_ray *ray, int x);
@@ -179,18 +191,5 @@ void	draw_wall(t_game *game, t_ray *ray, int x);
 void	cleanup(t_game *game);
 void	error_exit(t_game *game, char *msg);
 double	get_time(void);
-
-// parsing
-void	check_args(int argc, char **argv);
-void	parse_file(t_game *game, char *path);
-void	read_file(t_game *game, char *path);
-int		parse_header(t_game *game);
-void	parse_color(t_game *game, char *s, int *dst);
-void	extract_map(t_game *game, int start);
-void	check_map(t_game *game);
-void	set_player(t_game *game);
-void	free_tab(char **tab);
-int		is_blank(char *s);
-char	*skip_spaces(char *s);
 
 #endif

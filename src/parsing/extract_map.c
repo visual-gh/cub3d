@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flvejux <flvejux@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/25 10:11:20 by flvejux           #+#    #+#             */
-/*   Updated: 2026/11/25 13:05:35 by flvejux          ###   ########.fr       */
+/*   Updated: 2026/11/27 17:14:54 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	extract_map(t_game *game, int start)
 	while (game->file[start] && is_blank(game->file[start]))
 		start++;
 	if (!game->file[start])
-		error_exit(game, "missing maps");
+		error_exit(game, "missing map");
 	end = last_map_line(game, start);
 	measure_map(game, start, end);
 	game->map = ft_calloc(game->map_h + 1, sizeof(char *));

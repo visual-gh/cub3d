@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flvejux <flvejux@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/13 14:04:17 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/25 13:41:26 by flvejux          ###   ########.fr       */
+/*   Updated: 2026/11/27 17:13:42 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	check_args(argc, argv);
-	ft_memset(&game, 0, sizeof(t_game));
+	ft_memset(&game, 0, sizeof(game));
 	parse_file(&game, argv[1]);
 	init_row_tables(&game);
 	init_game(&game);

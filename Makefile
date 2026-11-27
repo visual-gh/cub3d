@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                          :::      ::::::::   #
-#   Makefile                                             :+:      :+:    :+:   #
-#                                                      +:+ +:+         +:+     #
-#   By: flvejux <flvejux@student.42lausanne.ch>      +#+  +:+       +#+        #
-#                                                  +#+#+#+#+#+   +#+           #
-#   Created: 2026/08/14 12:11:53 by Visual              #+#    #+#             #
-#   Updated: 2026/11/25 13:48:47 by flvejux            ###   ########.fr       #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: Visual <github.com/visual-gh>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/08/14 12:11:53 by Visual            #+#    #+#              #
+#    Updated: 2026/11/27 17:16:56 by Visual           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,14 @@ SRCS	= src/main.c \
 		  src/game/loop.c \
 		  src/game/move.c \
 		  src/game/rotate.c \
+		  src/parsing/check_map.c \
+		  src/parsing/extract_map.c \
+		  src/parsing/parse_color.c \
+		  src/parsing/parse_file.c \
+		  src/parsing/parse_header.c \
+		  src/parsing/parse_utils.c \
+		  src/parsing/read_file.c \
+		  src/parsing/set_player.c \
 		  src/render/ceiling.c \
 		  src/render/color.c \
 		  src/render/draw_column.c \
@@ -47,16 +55,7 @@ SRCS	= src/main.c \
 		  src/render/wall.c \
 		  src/utils/cleanup.c \
 		  src/utils/error.c \
-		  src/utils/timer.c \
-		  src/parsing/parse_file.c \
-		  src/parsing/read_file.c \
-		  src/parsing/parse_header.c \
-		  src/parsing/parse_color.c \
-		  src/parsing/extract_map.c \
-		  src/parsing/check_map.c \
-		  src/parsing/set_player.c \
-		  src/parsing/parse_utils.c \
-
+		  src/utils/timer.c
 
 OBJS	= $(SRCS:src/%.c=obj/%.o)
 
