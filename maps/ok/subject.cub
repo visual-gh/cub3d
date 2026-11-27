@@ -3,8 +3,8 @@ SO textures/south.xpm
 WE textures/west.xpm
 EA textures/east.xpm
 
-F 185,180,109 // Floor Backroom color
-C 161,150,76 // Ceiling Backroom color
+F 185,180,109
+C 161,150,76
 
         1111111111111111111111111
         1000000000110000000000001
