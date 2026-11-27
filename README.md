@@ -1,4 +1,4 @@
-*This project has been created as part of the 42 curriculum by elhedigu, flvejux.*
+*This project has been created as part of the 42 curriculum by Visual, flvejux.*
 
 # cub3D
 
@@ -39,7 +39,7 @@ make re     # full rebuild
 
 ### Run
 ```bash
-./cub3D maps/ok/subject.cub
+./cub3D maps/backrooms.cub
 ```
 
 ### Controls
@@ -97,4 +97,4 @@ bash tests/test_bad.sh    # checks that every invalid map is rejected with "Erro
 ### Use of AI
 
 - **Parsing (flvejux)**: AI was used to adapt the parsing code from a previous 42 project (so_long) to the cub3D requirements, and to suggest ideas and approaches to think about (for example how to check that the map is closed, or which edge cases to handle in color parsing).
-- **Rendering and game logic (Visual)**: *to be completed.*
+- **Rendering and game logic (Visual)**: AI was used as a tutor and reviewer: explaining the raycasting maths (DDA, camera plane, rotation, texture mapping), as well as to figure out how to best implement the fog and procedural ceiling texture in an efficient way.
