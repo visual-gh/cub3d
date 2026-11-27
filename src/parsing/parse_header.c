@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/24 14:07:44 by flvejux           #+#    #+#             */
-/*   Updated: 2026/11/27 16:26:06 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/27 16:53:18 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,29 +63,21 @@ static void	parse_texture(t_game *game, char *value, int id)
 
 static void	parse_element(t_game *game, char *line, int *seen)
 {
-	int		id;
-	char	*value;
+	int	id;
 
 	line = skip_spaces(line);
 	id = get_id(line);
 	if (id == -1)
-	{
 		error_exit(game, "invalid identifier, or map before all 6 elements");
-		return ;
-	}
 	if (seen[id])
 		error_exit(game, "duplicate identifier");
 	seen[id] = 1;
 	if (id < FACE_COUNT)
-		value = skip_spaces(line + 2);
+		parse_texture(game, skip_spaces(line + 2), id);
+	else if (id == FLOOR)
+		parse_color(game, skip_spaces(line + 1), &game->floor_color);
 	else
-		value = skip_spaces(line + 1);
-	if (id < FACE_COUNT)
-		parse_texture(game, value, id);
-	else if (id == ID_F)
-		parse_color(game, value, &game->floor_color);
-	else
-		parse_color(game, value, &game->ceil_color);
+		parse_color(game, skip_spaces(line + 1), &game->ceil_color);
 }
 
 int	parse_header(t_game *game)

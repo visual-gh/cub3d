@@ -6,7 +6,7 @@
 /*   By: Visual <github.com/visual-gh>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 19:43:09 by Visual            #+#    #+#             */
-/*   Updated: 2026/11/27 16:31:39 by Visual           ###   ########.fr       */
+/*   Updated: 2026/11/27 16:47:15 by Visual           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@
 # define WALL_GAP		0.2
 
 # define FACE_COUNT		4
+# define ID_COUNT		6
 # define CELL_PANELS	2
 # define LIGHT_EVERY	2
 # define PANEL_EDGE		0.03125
@@ -66,16 +67,14 @@
 # define FOG_MAX		1.0
 # define LIGHT_THRU		0.05
 
-# define ID_F		4
-# define ID_C		5
-# define ID_COUNT	6
-
 typedef enum e_face
 {
 	NO,
 	SO,
 	WE,
-	EA
+	EA,
+	FLOOR,
+	CEILING
 }	t_face;
 
 typedef struct s_img
